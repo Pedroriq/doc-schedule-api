@@ -3,14 +3,15 @@ import { DataSource } from 'typeorm'
 import { Doctor } from './entity/Doctor'
 import { Patient } from './entity/Patient'
 import { Appointment } from './entity/Appointment'
+import { env } from './env'
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
-  host: process.env.DB_HOST || 'localhost',
-  port: Number(process.env.DB_PORT) || 5432,
-  username: process.env.DB_USER || 'postgres',
-  password: process.env.DB_PASSWORD || 'postgres',
-  database: process.env.DB_NAME || 'doc-schedule',
+  host: env.DB_HOST,
+  port: env.DB_PORT,
+  username: env.DB_USER,
+  password: env.DB_PASSWORD,
+  database: env.DB_NAME,
   logging: false,
   synchronize: false,
   entities: [Doctor, Patient, Appointment],
