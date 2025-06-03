@@ -7,13 +7,12 @@ import { Appointment } from "./entity/Appointment"
 
 export const AppDataSource = new DataSource({
     type: "postgres",
-    host: "localhost",
+    host: "db",
     port: 5432,
     username: "postgres",
     password: "postgres",
     database: "doc-schedule",
     logging: false,
-    synchronize: true,
     entities: [Doctor, Patient, Appointment],
     migrations: [],
     subscribers: [],
