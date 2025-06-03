@@ -13,7 +13,8 @@ export const AppDataSource = new DataSource({
     password: process.env.DB_PASSWORD || 'postgres',
     database: process.env.DB_NAME || "doc-schedule",
     logging: false,
+    synchronize: false,
     entities: [Doctor, Patient, Appointment],
-    migrations: [],
+    migrations: ["src/migration/*.ts"],
     subscribers: [],
 })

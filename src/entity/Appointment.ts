@@ -8,19 +8,19 @@ export class Appointment {
   id!: number
 
   @ManyToOne(() => Patient)
-  @JoinColumn({name: 'patient_id'})
+  @JoinColumn({ name: 'patient_id' })
   patient!: Patient
 
   @ManyToOne(() => Doctor)
-  @JoinColumn({name: 'doctor_id'})
+  @JoinColumn({ name: 'doctor_id' })
   doctor!: Doctor
 
-  @Column({ type: 'timestamp'})
+  @Column({ type: 'timestamp' })
   date!: Date
 
-  @Column({type: 'text', nullable: true})
+  @Column({ type: 'text', nullable: true })
   description?: string
 
-  @Column({default: 'scheduled'})
+  @Column({ default: 'scheduled' })
   status!: 'scheduled' | 'completed' | 'cancelled'
 }
