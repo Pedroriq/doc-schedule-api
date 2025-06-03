@@ -10,13 +10,13 @@ export class Patient {
   @PrimaryGeneratedColumn()
   id!: number
 
-  @Column()
+  @Column('text')
   name!: string
 
-  @Column({ unique: true })
+  @Column('text', { unique: true })
   email!: string
 
-  @Column()
+  @Column('text')
   phone!: string
 
   @Column({ type: 'date' })

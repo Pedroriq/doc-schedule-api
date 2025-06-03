@@ -10,16 +10,16 @@ export class Doctor {
   @PrimaryGeneratedColumn()
   id!: number
 
-  @Column()
+  @Column('text')
   name!: string
 
-  @Column({ unique: true })
+  @Column('text', { unique: true })
   email!: string
 
-  @Column()
+  @Column('text')
   phone!: string
 
-  @Column()
+  @Column('text')
   specialty!: string
 
   @CreateDateColumn()

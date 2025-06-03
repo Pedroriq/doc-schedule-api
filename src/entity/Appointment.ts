@@ -27,6 +27,6 @@ export class Appointment {
   @Column({ type: 'text', nullable: true })
   description?: string
 
-  @Column({ default: 'scheduled' })
+  @Column('text', { default: 'scheduled' })
   status!: 'scheduled' | 'completed' | 'cancelled'
 }

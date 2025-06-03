@@ -16,6 +16,7 @@ export class AppointmentController {
         message: 'Validation error',
         errors: parsed.error.format(),
       })
+      return
     }
 
     const { patientId, doctorId, date, description, status } = parsed.data
@@ -27,11 +28,13 @@ export class AppointmentController {
     const patient = await patientRepo.findOneBy({ id: patientId })
     if (!patient) {
       res.status(404).json({ message: 'Patient not found' })
+      return
     }
 
     const doctor = await doctorRepo.findOneBy({ id: doctorId })
     if (!doctor) {
       res.status(404).json({ message: 'Doctor not found' })
+      return
     }
 
     const dateDate = new Date(date)

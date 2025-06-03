@@ -21,7 +21,7 @@ export class PatientController {
     const patient = repo.create({ name, email, phone, birthdate })
     await repo.save(patient)
 
-    res.status(201).json()
+    res.status(201).json(patient)
   }
 
   static async getAll(req: Request, res: Response) {
@@ -84,6 +84,7 @@ export class PatientController {
 
     if (!patient) {
       res.status(404).json({ message: 'Patient not found' })
+      return
     }
 
     repo.merge(patient, parseResult.data)
