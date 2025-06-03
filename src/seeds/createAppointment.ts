@@ -1,21 +1,19 @@
-import { AppDataSource } from '../data-source';
-import { Appointment } from '../entity/Appointment';
-import { Patient } from '../entity/Patient';
-import { Doctor } from '../entity/Doctor';
-import { DeepPartial
-
- } from 'typeorm';
+import { AppDataSource } from '../data-source'
+import { Appointment } from '../entity/Appointment'
+import { Patient } from '../entity/Patient'
+import { Doctor } from '../entity/Doctor'
+import { DeepPartial } from 'typeorm'
 
 export async function seedAppointments() {
-  const appointmentRepo = AppDataSource.getRepository(Appointment);
-  const patientRepo = AppDataSource.getRepository(Patient);
-  const doctorRepo = AppDataSource.getRepository(Doctor);
+  const appointmentRepo = AppDataSource.getRepository(Appointment)
+  const patientRepo = AppDataSource.getRepository(Patient)
+  const doctorRepo = AppDataSource.getRepository(Doctor)
 
-  const patients = await patientRepo.find();
-  const doctors = await doctorRepo.find();
+  const patients = await patientRepo.find()
+  const doctors = await doctorRepo.find()
 
   if (patients.length === 0 || doctors.length === 0) {
-    return;
+    return
   }
 
   const appointments: DeepPartial<Appointment>[] = [
@@ -54,8 +52,8 @@ export async function seedAppointments() {
       patient: patients[4],
       doctor: doctors[4],
     },
-  ];
+  ]
 
-    const createdAppointments = appointmentRepo.create(appointments);
-    await appointmentRepo.save(createdAppointments);
+  const createdAppointments = appointmentRepo.create(appointments)
+  await appointmentRepo.save(createdAppointments)
 }

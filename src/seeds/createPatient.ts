@@ -1,11 +1,10 @@
-import { AppDataSource } from "../data-source";
-import { Patient } from "../entity/Patient";
-import { DeepPartial } from "typeorm";
+import { AppDataSource } from '../data-source'
+import { Patient } from '../entity/Patient'
+import { DeepPartial } from 'typeorm'
 
 export async function seedPatients() {
-
-    const repo = AppDataSource.getRepository(Patient)
-      const patients: DeepPartial<Patient>[] = [
+  const repo = AppDataSource.getRepository(Patient)
+  const patients: DeepPartial<Patient>[] = [
     {
       name: 'Lucas Pereira',
       email: 'lucas.pereira@example.com',
@@ -36,9 +35,8 @@ export async function seedPatients() {
       phone: '11998887775',
       birthdate: new Date('1995-09-05'),
     },
-  ];
+  ]
 
-const createdPatients = repo.create(patients);
-await repo.save(createdPatients);
-
+  const createdPatients = repo.create(patients)
+  await repo.save(createdPatients)
 }

@@ -6,7 +6,13 @@
    "devDependencies": {
       "@types/express": "^5.0.2",
       "@types/node": "^22.13.10",
+      "@typescript-eslint/eslint-plugin": "^8.33.1",
+      "@typescript-eslint/parser": "^8.33.1",
+      "eslint": "^9.28.0",
+      "eslint-config-prettier": "^10.1.5",
+      "eslint-plugin-prettier": "^5.4.1",
       "nodemon": "^3.1.10",
+      "prettier": "^3.5.3",
       "ts-node": "^10.9.2",
       "typescript": "^5.8.2"
    },
@@ -26,6 +32,7 @@
       "start": "ts-node src/server.ts",
       "typeorm": "typeorm-ts-node-commonjs",
       "migration:run": "npm run typeorm migration:run -- -d src/data-source.ts",
-      "seed": "ts-node src/seeds/runSeeds.ts"
+      "seed": "ts-node src/seeds/runSeeds.ts",
+      "lint": "eslint . --ext .ts,.tsx --fix"
    }
 }

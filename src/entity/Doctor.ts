@@ -1,4 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm'
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+} from 'typeorm'
 
 @Entity()
 export class Doctor {
@@ -8,7 +13,7 @@ export class Doctor {
   @Column()
   name!: string
 
-  @Column({unique: true})
+  @Column({ unique: true })
   email!: string
 
   @Column()
