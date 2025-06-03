@@ -10,3 +10,19 @@ routerPatient.post('/',
     checkExistsEmail(AppDataSource.getRepository(Patient)), 
     PatientController.create
 )
+
+routerPatient.get('/',
+    PatientController.getAll
+)
+
+routerPatient.get('/:name',
+    PatientController.getByName
+)
+
+routerPatient.delete('/:id',
+    PatientController.deletePatient
+)
+
+routerPatient.put("/:id",
+    PatientController.update
+)
