@@ -8,8 +8,10 @@ RUN npm i
 
 COPY . . 
 
+COPY entrypoint.sh /usr/src/app/entrypoint.sh
+RUN chmod +x /usr/src/app/entrypoint.sh
+
 EXPOSE 3000
 
-RUN npm run migration:run
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
 
-CMD ["npm", "start"]
