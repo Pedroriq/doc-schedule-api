@@ -8,9 +8,9 @@ import { routerPatient } from './routes/patient.routes'
 const app = express()
 app.use(express.json())
 
-app.use("/appointment", routerAppointment)
-app.use("/doctor", routerDoctor)
-app.use("/patient", routerPatient)
+app.use("/appointments", routerAppointment)
+app.use("/doctors", routerDoctor)
+app.use("/patients", routerPatient)
 
 AppDataSource.initialize()
     .then(() => {

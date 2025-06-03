@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { AppDataSource } from "../data-source";
 import { Patient } from "../entity/Patient";
 import { z } from 'zod'
-import { json } from "stream/consumers";
 
 
 export class PatientController {
