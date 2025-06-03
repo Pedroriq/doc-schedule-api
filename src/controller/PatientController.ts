@@ -1,20 +1,12 @@
 import { Request, Response } from 'express'
 import { AppDataSource } from '../data-source'
 import { Patient } from '../entity/Patient'
-import { z } from 'zod'
+import { createPatientSchema } from '../dtos/patient.dto'
+import { updatePatientSchema } from '../dtos/patient.dto'
 
 export class PatientController {
   static async create(req: Request, res: Response) {
-    const patientSchema = z.object({
-      name: z.string(),
-      email: z.string().email(),
-      phone: z.string(),
-      birthdate: z.string().refine((val) => !isNaN(Date.parse(val)), {
-        message: 'Invalid date format',
-      }),
-    })
-
-    const parsed = patientSchema.safeParse(req.body)
+    const parsed = createPatientSchema.safeParse(req.body)
 
     if (!parsed.success) {
       res.status(400).json({
@@ -79,20 +71,8 @@ export class PatientController {
   }
 
   static async update(req: Request, res: Response) {
-    const patientSchema = z.object({
-      name: z.string().optional(),
-      email: z.string().email().optional(),
-      phone: z.string().optional(),
-      birthdate: z
-        .string()
-        .refine((val) => !isNaN(Date.parse(val)), {
-          message: 'Invalid date format',
-        })
-        .optional(),
-    })
-
     const { id } = req.params
-    const parseResult = patientSchema.safeParse(req.body)
+    const parseResult = updatePatientSchema.safeParse(req.body)
 
     if (!parseResult.success) {
       res.status(400).json({ error: parseResult.error.format() })

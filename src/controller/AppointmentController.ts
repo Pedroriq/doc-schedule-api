@@ -1,24 +1,15 @@
-import { z } from 'zod'
 import { Request, Response } from 'express'
 import { AppDataSource } from '../data-source'
 import { Appointment } from '../entity/Appointment'
 import { Patient } from '../entity/Patient'
 import { Doctor } from '../entity/Doctor'
 import { Between } from 'typeorm'
+import { createAppointmentSchema } from '../dtos/appointment.dto'
+import { updateAppointmentSchema } from '../dtos/appointment.dto'
 
 export class AppointmentController {
   static async create(req: Request, res: Response) {
-    const appointmentSchema = z.object({
-      patientId: z.number(),
-      doctorId: z.number(),
-      date: z.string().refine((val) => !isNaN(Date.parse(val)), {
-        message: 'Invalid date format',
-      }),
-      description: z.string().optional(),
-      status: z.enum(['scheduled', 'completed', 'cancelled']).optional(),
-    })
-
-    const parsed = appointmentSchema.safeParse(req.body)
+    const parsed = createAppointmentSchema.safeParse(req.body)
 
     if (!parsed.success) {
       res.status(400).json({
@@ -177,19 +168,8 @@ export class AppointmentController {
   }
 
   static async update(req: Request, res: Response) {
-    const appointmentSchema = z.object({
-      date: z
-        .string()
-        .refine((val) => !isNaN(Date.parse(val)), {
-          message: 'Invalid date format',
-        })
-        .optional(),
-      description: z.string().optional(),
-      status: z.enum(['scheduled', 'completed', 'cancelled']).optional(),
-    })
-
     const { appointmentId } = req.params
-    const parseResult = appointmentSchema.safeParse(req.body)
+    const parseResult = updateAppointmentSchema.safeParse(req.body)
 
     if (!parseResult.success) {
       res.status(400).json({ error: parseResult.error.format() })

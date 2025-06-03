@@ -1,18 +1,12 @@
 import { AppDataSource } from '../data-source'
 import { Doctor } from '../entity/Doctor'
 import { Request, Response } from 'express'
-import { z } from 'zod'
+import { createDoctorSchema } from '../dtos/doctor.dto'
+import { updateDoctorSchema } from '../dtos/doctor.dto'
 
 export class DoctorController {
   static async create(req: Request, res: Response) {
-    const doctorSchema = z.object({
-      name: z.string(),
-      email: z.string().email(),
-      phone: z.string(),
-      specialty: z.string(),
-    })
-
-    const parsed = doctorSchema.safeParse(req.body)
+    const parsed = createDoctorSchema.safeParse(req.body)
 
     if (!parsed.success) {
       res.status(400).json({
@@ -92,15 +86,8 @@ export class DoctorController {
   }
 
   static async update(req: Request, res: Response) {
-    const doctorSchema = z.object({
-      name: z.string().optional(),
-      email: z.string().email().optional(),
-      phone: z.string().optional(),
-      specialty: z.string().optional(),
-    })
-
     const { id } = req.params
-    const parseResult = doctorSchema.safeParse(req.body)
+    const parseResult = updateDoctorSchema.safeParse(req.body)
 
     if (!parseResult.success) {
       res.status(400).json({ error: parseResult.error.format() })
