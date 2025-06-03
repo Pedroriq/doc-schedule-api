@@ -23,7 +23,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - name: Syntactic Analysis with ESlint 
-    - run: |
+      run: |
         npm i
         npm run lint
       
