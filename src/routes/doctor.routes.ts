@@ -1,14 +1,31 @@
 import { Router } from "express"
 import { AppDataSource } from "../data-source"
 import { Doctor } from "../entity/Doctor"
+import { checkExistsEmail } from "../middlewares/checkExistsEmail"
+import { DoctorController } from "../controller/DoctorController"
 
 export const routerDoctor = Router()
 const repo = AppDataSource.getRepository(Doctor)
 
-routerDoctor.post('/', async (req, res) => {
-    const doctor = repo.create(req.body)
-    await repo.save(doctor)
+routerDoctor.post('/', 
+    checkExistsEmail(AppDataSource.getRepository(Doctor)), 
+    DoctorController.create
+)
 
-    res.status(201).json(doctor)
-})
+routerDoctor.get('/', 
+    DoctorController.getAll
+)
+routerDoctor.get('/specialty/:specialty', 
+    DoctorController.getSpecialty
+)
+routerDoctor.get('/:name', 
+    DoctorController.getByName
+)
 
+routerDoctor.delete('/:id', 
+    DoctorController.deleteDoctor
+)
+
+routerDoctor.put('/:id',
+    DoctorController.update
+)
