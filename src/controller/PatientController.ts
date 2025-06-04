@@ -50,6 +50,19 @@ export class PatientController {
     }
   }
 
+  static async getById(req: Request, res: Response) {
+    const { id } = req.params
+    try {
+      const repo = AppDataSource.getRepository(Patient)
+      const patient = await repo.findOneBy({ id: Number(id) })
+
+      res.status(200).json(patient)
+    } catch (error) {
+      console.error(error)
+      res.status(500).json({ message: 'Error to search patient by id' })
+    }
+  }
+
   static async deletePatient(req: Request, res: Response) {
     const { id } = req.params
     const repo = AppDataSource.getRepository(Patient)

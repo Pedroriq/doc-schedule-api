@@ -13,8 +13,8 @@ routerPatient.post(
 )
 
 routerPatient.get('/', PatientController.getAll)
-
-routerPatient.get('/:name', PatientController.getByName)
+routerPatient.get('/name/:name', PatientController.getByName)
+routerPatient.get('/id/:id', PatientController.getById)
 
 routerPatient.delete('/:id', PatientController.deletePatient)
 

@@ -14,7 +14,8 @@ routerDoctor.post(
 
 routerDoctor.get('/', DoctorController.getAll)
 routerDoctor.get('/specialty/:specialty', DoctorController.getSpecialty)
-routerDoctor.get('/:name', DoctorController.getByName)
+routerDoctor.get('/name/:name', DoctorController.getByName)
+routerDoctor.get('/id/:id', DoctorController.getById)
 
 routerDoctor.delete('/:id', DoctorController.deleteDoctor)
 
