@@ -11,7 +11,7 @@ export const updateDoctorSchema = z.object({
   name: z.string().optional(),
   email: z.string().email().optional(),
   phone: z.string().optional(),
-  specialty: z.string(),
+  specialty: z.string().optional(),
 })
 
 export type CreateDoctorDTO = z.infer<typeof createDoctorSchema>

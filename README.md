@@ -21,7 +21,10 @@ docker-compose up --build -d
 `/patients - [GET, POST]`
 
 #### Get patient by name
-`/patients/:name - [GET]`
+`/patients/name/:name - [GET]`
+
+### Get patient by id
+`/patients/id/:id`
 
 #### Delete or update patient by id
 `/patients/:id - [DELETE, PUT]`
@@ -34,7 +37,10 @@ docker-compose up --build -d
 `/doctors/specialy/:specialty - [GET]`
 
 #### Get doctor by name
-`/doctors/:name - [GET]`
+`/doctors/name/:name - [GET]`
+
+#### Get doctor by id
+`/doctors/id/:id - [GET]`
 
 #### Delete or update doctor by id
 `/doctors/:id - [DELETE, PUT]`
