@@ -17,8 +17,6 @@ routerAppointment.get(
   AppointmentController.getAppointmentByDoctorId,
 )
 
-routerAppointment.get('/today', AppointmentController.getTodayAppointment)
-
 routerAppointment.delete(
   '/:appointmentId',
   AppointmentController.deleteAppointment,
