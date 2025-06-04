@@ -1,10 +1,12 @@
 # DOC Schedule API
+[![Doc API CI](https://github.com/Pedroriq/doc-schedule-api/actions/workflows/main.yml/badge.svg)](https://github.com/Pedroriq/doc-schedule-api/actions/workflows/main.yml)
+
 ## Introduction
 A project to register patients and schedule appointments with doctors.
 
 This project is deployed in Render and can be acessed with https://doc-schedule-api.onrender.com
 
-You can create, list, update and delete Patients, Doctors ou Appointments.
+You can create, list, update and delete Patients, Doctors or Appointments.
 
 ## How to use
 If you want to run in you local machine, execute docker command:
